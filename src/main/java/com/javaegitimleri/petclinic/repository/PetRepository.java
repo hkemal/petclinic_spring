@@ -1,6 +1,6 @@
-package repository;
+package com.javaegitimleri.petclinic.repository;
 
-import entity.Pet;
+import com.javaegitimleri.petclinic.entity.Pet;
 
 import java.util.List;
 

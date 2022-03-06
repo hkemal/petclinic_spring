@@ -1,11 +1,13 @@
-package repository.mem;
+package com.javaegitimleri.petclinic.repository.mem;
 
-import entity.Owner;
-import repository.OwnerRepository;
+import com.javaegitimleri.petclinic.entity.Owner;
+import com.javaegitimleri.petclinic.repository.OwnerRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Repository
 public class OwnerRepositoryInMemoryImpl implements OwnerRepository {
 
     private Map<Long, Owner> ownersMap = new HashMap<>();
