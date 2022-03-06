@@ -1,4 +1,4 @@
-package service;
+package service.petclinic;
 
 import entity.Owner;
 import exception.OwnersNotFoundException;
