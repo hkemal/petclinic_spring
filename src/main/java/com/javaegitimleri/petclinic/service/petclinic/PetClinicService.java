@@ -1,7 +1,7 @@
-package service.petclinic;
+package com.javaegitimleri.petclinic.service.petclinic;
 
-import entity.Owner;
-import exception.OwnersNotFoundException;
+import com.javaegitimleri.petclinic.entity.Owner;
+import com.javaegitimleri.petclinic.exception.OwnersNotFoundException;
 
 import java.util.List;
 

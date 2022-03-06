@@ -1,4 +1,4 @@
-package entity;
+package com.javaegitimleri.petclinic.entity;
 
 import java.util.Date;
 
