@@ -4,7 +4,7 @@ import entity.Owner;
 
 import java.util.List;
 
-public interface OwnerPepository {
+public interface OwnerRepository {
 
     List<Owner> findAll();
 
