@@ -4,7 +4,7 @@ import entity.Pet;
 
 import java.util.List;
 
-public interface PetPepository {
+public interface PetRepository {
 
     List<Pet> findAll();
 
