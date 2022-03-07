@@ -7,6 +7,7 @@
     <groupId>org.example</groupId>
     <artifactId>petclinic_spring</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <!--    <packaging>war</packaging>-->
     <packaging>jar</packaging>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -14,6 +15,15 @@
         <version>2.0.0.RELEASE</version>
     </parent>
     <dependencies>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
