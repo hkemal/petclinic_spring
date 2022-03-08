@@ -37,6 +37,7 @@ public class PetClinicRestControllerTest {
         MatcherAssert.assertThat(firstNameOfOwners, Matchers.containsInAnyOrder("Charles", "Susan", "John", "Jane"));
     }
 
+    //
     @Test
     public void testGetOwner() {
         ResponseEntity<List> response = restTemplate.getForEntity("http://localhost:8082/rest/owners", List.class);
