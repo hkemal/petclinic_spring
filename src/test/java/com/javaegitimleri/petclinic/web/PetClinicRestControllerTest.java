@@ -3,9 +3,11 @@ package com.javaegitimleri.petclinic.web;
 import com.javaegitimleri.petclinic.entity.Owner;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
@@ -20,6 +22,17 @@ public class PetClinicRestControllerTest {
     @Before
     public void setUp() {
         restTemplate = new RestTemplate();
+    }
+
+    @Test
+    public void testDeleteOwner() {
+        restTemplate.delete("http://localhost:8082/rest/owner/1");
+        try {
+            ResponseEntity<Owner> ownerResponse = restTemplate.getForEntity("http://localhost:8082/rest/owner/1", Owner.class);
+            Assert.fail("should have not returned owner");
+        } catch (RestClientException exception) {
+
+        }
     }
 
     @Test
