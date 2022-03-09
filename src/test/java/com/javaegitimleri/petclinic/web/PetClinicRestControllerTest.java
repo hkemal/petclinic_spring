@@ -23,6 +23,17 @@ public class PetClinicRestControllerTest {
     }
 
     @Test
+    public void testUpdateOwner() {
+        ResponseEntity<Owner> ownerResponse = restTemplate.getForEntity("http://localhost:8082/rest/owner/1", Owner.class);
+        MatcherAssert.assertThat(ownerResponse.getBody().getFirstName(), Matchers.equalTo("John"));
+        Owner owner = ownerResponse.getBody();
+        owner.setFirstName("Marcus");
+        restTemplate.put("http://localhost:8082/rest/owner/1", owner);
+        owner = restTemplate.getForObject("http://localhost:8082/rest/owner/1", Owner.class);
+        MatcherAssert.assertThat(owner.getFirstName(), Matchers.equalTo("Marcus"));
+    }
+
+    @Test
     public void testCreateOwner() {
         Owner owner = new Owner();
         owner.setFirstName("Marcus");
