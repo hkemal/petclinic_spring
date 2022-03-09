@@ -28,3 +28,10 @@ hs_err_pid*
 .classpath
 
 target/
+
+petclinic.file
+petclinic.file.2022-03-07.0.gz
+petclinic.file.2022-03-08.0.gz
+petclinic_spring.iml
+
+.idea
