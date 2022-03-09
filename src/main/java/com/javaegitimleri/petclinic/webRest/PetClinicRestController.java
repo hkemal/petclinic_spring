@@ -1,6 +1,7 @@
 package com.javaegitimleri.petclinic.webRest;
 
 import com.javaegitimleri.petclinic.entity.Owner;
+import com.javaegitimleri.petclinic.exception.InternalServerException;
 import com.javaegitimleri.petclinic.exception.OwnersNotFoundException;
 import com.javaegitimleri.petclinic.service.petclinic.PetClinicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,9 @@ public class PetClinicRestController {
             petClinicService.deleteOwner(id);
             return ResponseEntity.ok().build();
         } catch (OwnersNotFoundException exception) {
-            return ResponseEntity.notFound().build();
+            throw exception;
         } catch (Exception exception) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            throw new InternalServerException(exception);
         }
     }
 
