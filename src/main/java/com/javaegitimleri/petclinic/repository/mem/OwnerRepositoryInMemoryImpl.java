@@ -1,7 +1,7 @@
 package com.javaegitimleri.petclinic.repository.mem;
 
 import com.javaegitimleri.petclinic.entity.Owner;
-import com.javaegitimleri.petclinic.repository.OwnerRepository;
+import com.javaegitimleri.petclinic.repository.repo.OwnerRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;

@@ -1,4 +1,4 @@
-package com.javaegitimleri.petclinic.repository;
+package com.javaegitimleri.petclinic.repository.repo;
 
 import com.javaegitimleri.petclinic.entity.Pet;
 
