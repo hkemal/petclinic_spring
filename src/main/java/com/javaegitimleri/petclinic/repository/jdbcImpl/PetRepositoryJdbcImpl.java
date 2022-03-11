@@ -1,4 +1,4 @@
-package com.javaegitimleri.petclinic.repository.impl;
+package com.javaegitimleri.petclinic.repository.jdbcImpl;
 
 import com.javaegitimleri.petclinic.entity.Pet;
 import com.javaegitimleri.petclinic.repository.repo.PetRepository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("petRepository")
+@Repository
 public class PetRepositoryJdbcImpl implements PetRepository {
 
     @Autowired

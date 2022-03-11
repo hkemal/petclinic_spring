@@ -1,4 +1,4 @@
-package com.javaegitimleri.petclinic.repository.impl;
+package com.javaegitimleri.petclinic.repository.jdbcImpl;
 
 import com.javaegitimleri.petclinic.entity.Owner;
 import com.javaegitimleri.petclinic.repository.repo.OwnerRepository;
@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-@Repository("ownerRepository")
+@Repository
 public class OwnerRepositoryJdbcImpl implements OwnerRepository {
 
     @Autowired

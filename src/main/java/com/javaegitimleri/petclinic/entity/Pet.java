@@ -19,7 +19,7 @@ public class Pet {
     private Date birthDate;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name="owner_id")
     private Owner owner;
 
     public Long getId() {
