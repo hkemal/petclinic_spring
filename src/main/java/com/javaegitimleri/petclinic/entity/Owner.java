@@ -1,16 +1,27 @@
 package com.javaegitimleri.petclinic.entity;
 
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "t_owner")
+@XmlRootElement
 public class Owner {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "petClinicSeqGen")
+    @SequenceGenerator(name = "petClinicSeqGen", sequenceName = "petclinic_sequence")
     private Long id;
 
+    @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "last_name")
     private String lastName;
 
+    @OneToMany(mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 
     public Long getId() {
