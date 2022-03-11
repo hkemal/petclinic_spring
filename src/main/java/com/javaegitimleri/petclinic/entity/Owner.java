@@ -1,7 +1,10 @@
 package com.javaegitimleri.petclinic.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -48,6 +51,8 @@ public class Owner {
         this.lastName = lastName;
     }
 
+    @XmlTransient
+    @JsonIgnore
     public Set<Pet> getPets() {
         return pets;
     }
