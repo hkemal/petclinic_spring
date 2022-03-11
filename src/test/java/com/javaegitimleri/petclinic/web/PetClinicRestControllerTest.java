@@ -26,9 +26,9 @@ public class PetClinicRestControllerTest {
 
     @Test
     public void testDeleteOwner() {
-        restTemplate.delete("http://localhost:8082/rest/owner/1");
+        restTemplate.delete("http://localhost:8080/rest/owner/1");
         try {
-            ResponseEntity<Owner> ownerResponse = restTemplate.getForEntity("http://localhost:8082/rest/owner/1", Owner.class);
+            restTemplate.getForEntity("http://localhost:8080/rest/owner/1", Owner.class);
             Assert.fail("should have not returned owner");
         } catch (HttpClientErrorException exception) {
             MatcherAssert.assertThat(exception.getStatusCode().value(), Matchers.equalTo(404));
@@ -37,12 +37,12 @@ public class PetClinicRestControllerTest {
 
     @Test
     public void testUpdateOwner() {
-        ResponseEntity<Owner> ownerResponse = restTemplate.getForEntity("http://localhost:8082/rest/owner/1", Owner.class);
+        ResponseEntity<Owner> ownerResponse = restTemplate.getForEntity("http://localhost:8080/rest/owner/1", Owner.class);
         MatcherAssert.assertThat(ownerResponse.getBody().getFirstName(), Matchers.equalTo("John"));
         Owner owner = ownerResponse.getBody();
         owner.setFirstName("Marcus");
-        restTemplate.put("http://localhost:8082/rest/owner/1", owner);
-        owner = restTemplate.getForObject("http://localhost:8082/rest/owner/1", Owner.class);
+        restTemplate.put("http://localhost:8080/rest/owner/1", owner);
+        owner = restTemplate.getForObject("http://localhost:8080/rest/owner/1", Owner.class);
         MatcherAssert.assertThat(owner.getFirstName(), Matchers.equalTo("Marcus"));
     }
 
@@ -51,7 +51,7 @@ public class PetClinicRestControllerTest {
         Owner owner = new Owner();
         owner.setFirstName("Marcus");
         owner.setLastName("Souza");
-        URI uriLocation = restTemplate.postForLocation("http://localhost:8082/rest/owner", owner);
+        URI uriLocation = restTemplate.postForLocation("http://localhost:8080/rest/owner", owner);
         Owner createdOwner = restTemplate.getForObject(uriLocation, Owner.class);
         MatcherAssert.assertThat(createdOwner.getFirstName(), Matchers.equalTo(owner.getFirstName()));
         MatcherAssert.assertThat(createdOwner.getLastName(), Matchers.equalTo(owner.getLastName()));
@@ -59,14 +59,14 @@ public class PetClinicRestControllerTest {
 
     @Test
     public void testGetOwnerById() {
-        ResponseEntity<Owner> response = restTemplate.getForEntity("http://localhost:8082/rest/owner/1", Owner.class);
+        ResponseEntity<Owner> response = restTemplate.getForEntity("http://localhost:8080/rest/owner/1", Owner.class);
         MatcherAssert.assertThat(response.getStatusCodeValue(), Matchers.equalTo(200));
         MatcherAssert.assertThat(response.getBody().getFirstName(), Matchers.equalTo("John"));
     }
 
     @Test
     public void testGetOwnersByLastName() {
-        ResponseEntity<List> response = restTemplate.getForEntity("http://localhost:8082/rest/owners-by-last-name?lastName=Doe", List.class);
+        ResponseEntity<List> response = restTemplate.getForEntity("http://localhost:8080/rest/owners-by-last-name?lastName=Doe", List.class);
         MatcherAssert.assertThat(response.getStatusCodeValue(), Matchers.equalTo(200));
         List<Map<String, String>> body = response.getBody();
         List<String> firstNameOfOwners = body.stream().map(item -> item.get("firstName")).collect(Collectors.toList());
@@ -75,7 +75,7 @@ public class PetClinicRestControllerTest {
 
     @Test
     public void testGetOwner() {
-        ResponseEntity<List> response = restTemplate.getForEntity("http://localhost:8082/rest/owners", List.class);
+        ResponseEntity<List> response = restTemplate.getForEntity("http://localhost:8080/rest/owners", List.class);
         MatcherAssert.assertThat(response.getStatusCodeValue(), Matchers.equalTo(200));
         List<Map<String, String>> body = response.getBody();
         List<String> firstNameOfOwners = body.stream().map(item -> item.get("firstName")).collect(Collectors.toList());
