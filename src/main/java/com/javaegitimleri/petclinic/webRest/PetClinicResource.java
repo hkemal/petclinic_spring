@@ -13,6 +13,13 @@ public class PetClinicResource {
     @Autowired
     PetClinicService petClinicService;
 
+    @RequestMapping(value = {"/", "/index.html"})
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index");
+        return modelAndView;
+    }
+
     @RequestMapping("/owners")
     public ModelAndView getOwners() {
         ModelAndView modelAndView = new ModelAndView();

@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rest")
-public class PetClinicRestController {
+public class PetClinicRestResource {
 
     @Autowired
     private PetClinicService petClinicService;
@@ -89,10 +89,10 @@ public class PetClinicRestController {
     public ResponseEntity<?> getOwnerAsHateoasResource() {
         try {
             Owner owner = petClinicService.findOwner(1L);
-            Link self = ControllerLinkBuilder.linkTo(PetClinicRestController.class).slash("/owner/" + 1).withSelfRel();
-            Link create = ControllerLinkBuilder.linkTo(PetClinicRestController.class).slash("/owner").withRel("create");
-            Link update = ControllerLinkBuilder.linkTo(PetClinicRestController.class).slash("/owner/" + 1).withRel("update");
-            Link delete = ControllerLinkBuilder.linkTo(PetClinicRestController.class).slash("/owner/" + 1).withRel("delete");
+            Link self = ControllerLinkBuilder.linkTo(PetClinicRestResource.class).slash("/owner/" + 1).withSelfRel();
+            Link create = ControllerLinkBuilder.linkTo(PetClinicRestResource.class).slash("/owner").withRel("create");
+            Link update = ControllerLinkBuilder.linkTo(PetClinicRestResource.class).slash("/owner/" + 1).withRel("update");
+            Link delete = ControllerLinkBuilder.linkTo(PetClinicRestResource.class).slash("/owner/" + 1).withRel("delete");
             Resource<Owner> resource = new Resource<Owner>(owner, self, create, update, delete);
             return ResponseEntity.ok(resource);
         } catch (OwnersNotFoundException ex) {
