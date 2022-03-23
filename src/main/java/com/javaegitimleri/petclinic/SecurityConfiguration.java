@@ -20,10 +20,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/**/favicon.ico", "/css/**", "js/**", "/images/**", "/webjars/**", "/login.html")
-                .permitAll();
-        http.authorizeRequests().anyRequest().authenticated();
-        http.formLogin().loginPage("/login.html").loginProcessingUrl("/login").failureUrl("/login.html?loginFailed=true");
+        http.authorizeRequests()
+                .antMatchers("/**/favicon.ico", "/css/**", "js/**", "/images/**", "/webjars/**", "/login.html").permitAll()
+                .antMatchers("/rest/**").access("hasRole('EDITOR')")
+                .antMatchers("/actuator/**").access("hasRole('ADMIN')")
+                .anyRequest().authenticated();
+        http.formLogin().loginPage("/login.html").loginProcessingUrl("/login")
+                .failureUrl("/login.html?loginFailed=true");
         http.rememberMe().userDetailsService(userDetailsService);
         http.httpBasic();
     }
