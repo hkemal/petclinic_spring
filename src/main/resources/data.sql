@@ -23,9 +23,9 @@ INSERT INTO t_pet (id,name,birth_date,owner_id) VALUES (11, 'Twetty', '2000-03-0
 INSERT INTO t_pet (id,name,birth_date,owner_id) VALUES (12, 'Tarçın', '2000-06-24', 8);
 INSERT INTO t_pet (id,name,birth_date,owner_id) VALUES (13, 'Sarı', '2002-06-08', 9);
 
-INSERT INTO USERS VALUES('user1','{noop}secret',TRUE);
-INSERT INTO USERS VALUES('user2','{noop}secret',TRUE);
-INSERT INTO USERS VALUES('user3','{noop}secret',TRUE);
+INSERT INTO USERS VALUES('user1','{bcrypt}$2a$10$Pe4yTgTRW4eBJryqL.9wIO43iYmgJ36WyIxC/H2/w/hXwiT8Mj9py',TRUE);
+INSERT INTO USERS VALUES('user2','{bcrypt}$2a$10$v1rQFQU9ZnIPcFixFAGPaO/BekWmxObmOeSJkz.wl0y3PWx22uQSa',TRUE);
+INSERT INTO USERS VALUES('user3','{bcrypt}$2a$10$W02EJIcgt.gH0fobQghC7OtuUb5lLpFuTl/FfuaZyweWcAxbXi3/K',TRUE);
 
 INSERT INTO AUTHORITIES VALUES('user1','ROLE_USER');
 INSERT INTO AUTHORITIES VALUES('user2','ROLE_USER');
