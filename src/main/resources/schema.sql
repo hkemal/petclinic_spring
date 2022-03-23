@@ -16,3 +16,14 @@ ALTER TABLE PUBLIC.T_PET ADD CONSTRAINT PUBLIC.CONSTRAINT_2 PRIMARY KEY(ID);
 ALTER TABLE PUBLIC.T_PET ADD CONSTRAINT PUBLIC.CONSTRAINT_3 FOREIGN KEY(OWNER_ID) references PUBLIC.T_OWNER(ID);
 
 CREATE SEQUENCE PUBLIC.PETCLINIC_SEQUENCE START WITH 100;
+
+create table users(
+                      username varchar_ignorecase(128) not null primary key,
+                      password varchar_ignorecase(512) not null,
+                      enabled boolean not null);
+
+create table authorities (
+                             username varchar_ignorecase(128) not null,
+                             authority varchar_ignorecase(128) not null);
+
+create unique index idx_auth_username on authorities (username,authority);
