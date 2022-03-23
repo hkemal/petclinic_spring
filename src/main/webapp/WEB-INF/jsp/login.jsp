@@ -13,6 +13,7 @@
     Username:<input name="username" type="text"/><br/>
     Password:<input name="password" type="password"/><br/> <input type="hidden" name="${_csrf.parameterName}"
                                                                   value="${_csrf.token}">
+    Remember Me:<input name="remember-me" type="checkbox"><br />
     <input type="submit" value="Login">
 </form>
 <font color="red">
