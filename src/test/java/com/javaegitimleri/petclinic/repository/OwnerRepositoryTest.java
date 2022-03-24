@@ -1,0 +1,36 @@
+package com.javaegitimleri.petclinic.repository;
+
+import com.javaegitimleri.petclinic.entity.Owner;
+import com.javaegitimleri.petclinic.repository.repo.OwnerRepository;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceException;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@ActiveProfiles("dev")
+@Transactional
+public class OwnerRepositoryTest {
+
+    @Autowired
+    OwnerRepository ownerRepository;
+
+    @Autowired
+    EntityManager entityManager;
+
+    @Test(expected = PersistenceException.class)
+    public void testCreateOwner() {
+        Owner owner = new Owner();
+        owner.setFirstName(null);
+        owner.setLastName(null);
+        ownerRepository.create(owner);
+        entityManager.flush();
+    }
+}
