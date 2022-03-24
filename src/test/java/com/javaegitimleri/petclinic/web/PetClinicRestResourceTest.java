@@ -40,7 +40,7 @@ public class PetClinicRestResourceTest {
     @Test
     public void testDeleteOwner() {
         //restTemplate.delete("http://localhost:8084/rest/owner/1");
-        ResponseEntity<Void> responseEntity = restTemplate.exchange("http://localhost:8086/rest/owner/1", HttpMethod.DELETE, null, Void.class);
+        ResponseEntity<Void> responseEntity = restTemplate.exchange("http://localhost:8086/rest/owner/1", HttpMethod.DELETE,null,Void.class);
         try {
             restTemplate.getForEntity("http://localhost:8084/rest/owner/1", Owner.class);
             Assert.fail("should have not returned owner");
