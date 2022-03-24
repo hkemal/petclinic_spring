@@ -26,6 +26,7 @@ public class PetClinicRestResource {
     @RequestMapping(method = RequestMethod.DELETE, value = "/owner/{id}")
     public ResponseEntity<?> deleteOwner(@PathVariable(name = "id") Long id) {
         try {
+            petClinicService.findOwner(id);
             petClinicService.deleteOwner(id);
             return ResponseEntity.ok().build();
         } catch (OwnersNotFoundException exception) {
