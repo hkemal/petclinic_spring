@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -28,11 +29,12 @@ public class PetClinicNewOwnerResource {
     }
 
     @RequestMapping(value = "/owners/new", method = RequestMethod.POST)
-    public String handleFormSubmit(@ModelAttribute @Valid Owner owner, BindingResult bindingResult) {
+    public String handleFormSubmit(@ModelAttribute @Valid Owner owner, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "newOwner";
         }
         petClinicService.createOwner(owner);
+        redirectAttributes.addFlashAttribute("message", "Owner created with id : " + owner.getId());
         return "redirect:/owners";
     }
 }
