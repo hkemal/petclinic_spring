@@ -5,10 +5,10 @@ import com.javaegitimleri.petclinic.service.petclinic.PetClinicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class PetClinicDeleteOwnerResource {
@@ -24,8 +24,9 @@ public class PetClinicDeleteOwnerResource {
     }
 
     @RequestMapping(value = "/owners/delete/{id}", method = RequestMethod.POST)
-    public String handleFormSubmit(@PathVariable Long id) {
+    public String handleFormSubmit(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         petClinicService.deleteOwner(id);
+        redirectAttributes.addFlashAttribute("message", "Owner deleted with id : " + id);
         return "redirect:/owners";
     }
 }
