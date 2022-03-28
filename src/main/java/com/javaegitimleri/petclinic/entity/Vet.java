@@ -1,16 +1,13 @@
 package com.javaegitimleri.petclinic.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "t_vet")
-public class Vet {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "petClinicSeqGen")
-    @SequenceGenerator(name = "petClinicSeqGen", sequenceName = "petclinic_sequence")
-    private Long id;
+public class Vet extends BaseEntity {
 
     @NotEmpty
     @Column(name = "first_name")
@@ -19,14 +16,6 @@ public class Vet {
     @NotEmpty
     @Column(name = "last_name")
     private String lastName;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -47,7 +36,7 @@ public class Vet {
     @Override
     public String toString() {
         return "Owner{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
