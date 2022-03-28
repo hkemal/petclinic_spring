@@ -27,3 +27,10 @@ create table authorities (
                              authority varchar_ignorecase(128) not null);
 
 create unique index idx_auth_username on authorities (username,authority);
+
+CREATE TABLE PUBLIC.T_VET(
+    ID BIGINT NOT NULL,
+    FIRST_NAME VARCHAR(255) NOT NULL,
+    LAST_NAME VARCHAR(255) NOT NULL
+);
+ALTER TABLE PUBLIC.T_VET ADD CONSTRAINT PUBLIC.CONSTRAINT_11 PRIMARY KEY(ID);
