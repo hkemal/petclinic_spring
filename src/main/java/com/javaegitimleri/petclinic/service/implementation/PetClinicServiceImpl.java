@@ -9,7 +9,7 @@ import com.javaegitimleri.petclinic.repository.repo.PetRepository;
 import com.javaegitimleri.petclinic.repository.repo.VetRepository;
 import com.javaegitimleri.petclinic.service.petclinic.PetClinicService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
@@ -56,15 +56,16 @@ public class PetClinicServiceImpl implements PetClinicService {
     }
 
     @Override
+    @CacheEvict(cacheNames = "allOwners", allEntries = true)
     public void createOwner(Owner owner) {
         ownerRepository.create(owner);
 
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("k@g");
-        message.setTo("d@a");
-        message.setSubject("Owner created!");
-        message.setText("Owner entity with id : " + owner.getId() + "created successfully.");
-        javaMailSender.send(message);
+//        SimpleMailMessage message = new SimpleMailMessage();
+//        message.setFrom("k@g");
+//        message.setTo("d@a");
+//        message.setSubject("Owner created!");
+//        message.setText("Owner entity with id : " + owner.getId() + "created successfully.");
+//        javaMailSender.send(message);
     }
 
     @Override
