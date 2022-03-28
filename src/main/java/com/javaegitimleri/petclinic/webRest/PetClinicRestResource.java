@@ -5,6 +5,7 @@ import com.javaegitimleri.petclinic.exception.InternalServerException;
 import com.javaegitimleri.petclinic.exception.OwnerNotFoundException;
 import com.javaegitimleri.petclinic.service.petclinic.PetClinicService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
@@ -63,8 +64,10 @@ public class PetClinicRestResource {
         }
     }
 
+    @Cacheable("allOwners")
     @RequestMapping(method = RequestMethod.GET, value = "/owners")
     public ResponseEntity<List<Owner>> getOwners() {
+        System.out.println(">>>inside getOwners...");
         List<Owner> owners = petClinicService.findOwners();
         return ResponseEntity.ok(owners);
     }
