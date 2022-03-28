@@ -59,12 +59,12 @@ public class PetClinicServiceImpl implements PetClinicService {
     public void createOwner(Owner owner) {
         ownerRepository.create(owner);
 
-//        SimpleMailMessage message = new SimpleMailMessage();
-//        message.setFrom("k@g");
-//        message.setTo("d@a");
-//        message.setSubject("Owner created!");
-//        message.setText("Owner entity with id : " + owner.getId() + "created successfully.");
-//        javaMailSender.send(message);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("k@g");
+        message.setTo("d@a");
+        message.setSubject("Owner created!");
+        message.setText("Owner entity with id : " + owner.getId() + "created successfully.");
+        javaMailSender.send(message);
     }
 
     @Override
