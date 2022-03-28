@@ -2,7 +2,7 @@ package com.javaegitimleri.petclinic.webRest;
 
 import com.javaegitimleri.petclinic.entity.Owner;
 import com.javaegitimleri.petclinic.exception.InternalServerException;
-import com.javaegitimleri.petclinic.exception.OwnersNotFoundException;
+import com.javaegitimleri.petclinic.exception.OwnerNotFoundException;
 import com.javaegitimleri.petclinic.service.petclinic.PetClinicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
@@ -29,7 +29,7 @@ public class PetClinicRestResource {
             petClinicService.findOwner(id);
             petClinicService.deleteOwner(id);
             return ResponseEntity.ok().build();
-        } catch (OwnersNotFoundException exception) {
+        } catch (OwnerNotFoundException exception) {
             throw exception;
         } catch (Exception exception) {
             throw new InternalServerException(exception);
@@ -44,7 +44,7 @@ public class PetClinicRestResource {
             owner.setLastName(ownerRequest.getLastName());
             petClinicService.updateOwner(owner);
             return ResponseEntity.ok().build();
-        } catch (OwnersNotFoundException exception) {
+        } catch (OwnerNotFoundException exception) {
             return ResponseEntity.notFound().build();
         } catch (Exception exception) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -80,7 +80,7 @@ public class PetClinicRestResource {
         try {
             Owner owner = petClinicService.findOwner(id);
             return ResponseEntity.ok(owner);
-        } catch (OwnersNotFoundException exception) {
+        } catch (OwnerNotFoundException exception) {
             return ResponseEntity.notFound().build();
         }
     }
@@ -96,7 +96,7 @@ public class PetClinicRestResource {
             Link delete = ControllerLinkBuilder.linkTo(PetClinicRestResource.class).slash("/owner/" + 1).withRel("delete");
             Resource<Owner> resource = new Resource<Owner>(owner, self, create, update, delete);
             return ResponseEntity.ok(resource);
-        } catch (OwnersNotFoundException ex) {
+        } catch (OwnerNotFoundException ex) {
             return ResponseEntity.notFound().build();
         }
     }

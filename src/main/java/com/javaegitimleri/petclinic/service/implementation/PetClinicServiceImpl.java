@@ -1,9 +1,12 @@
 package com.javaegitimleri.petclinic.service.implementation;
 
 import com.javaegitimleri.petclinic.entity.Owner;
-import com.javaegitimleri.petclinic.exception.OwnersNotFoundException;
+import com.javaegitimleri.petclinic.entity.Vet;
+import com.javaegitimleri.petclinic.exception.OwnerNotFoundException;
+import com.javaegitimleri.petclinic.exception.VetNotFoundException;
 import com.javaegitimleri.petclinic.repository.repo.OwnerRepository;
 import com.javaegitimleri.petclinic.repository.repo.PetRepository;
+import com.javaegitimleri.petclinic.repository.repo.VetRepository;
 import com.javaegitimleri.petclinic.service.petclinic.PetClinicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -28,6 +31,9 @@ public class PetClinicServiceImpl implements PetClinicService {
     @Autowired
     JavaMailSender javaMailSender;
 
+    @Autowired
+    VetRepository vetRepository;
+
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Secured(value = {"ROLE_USER", "ROLE_EDITOR"})
@@ -43,9 +49,9 @@ public class PetClinicServiceImpl implements PetClinicService {
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public Owner findOwner(Long id) throws OwnersNotFoundException {
+    public Owner findOwner(Long id) throws OwnerNotFoundException {
         Owner owner = ownerRepository.findById(id);
-        if (owner == null) throw new OwnersNotFoundException("Owner not found with id : " + id);
+        if (owner == null) throw new OwnerNotFoundException("Owner not found with id : " + id);
         return owner;
     }
 
@@ -71,5 +77,15 @@ public class PetClinicServiceImpl implements PetClinicService {
         petRepository.deleteByOwnerId(id);
         ownerRepository.delete(id);
 //        if (true) throw new RuntimeException();
+    }
+
+    @Override
+    public List<Vet> findVets() {
+        return vetRepository.findAll();
+    }
+
+    @Override
+    public Vet findVet(Long id) throws VetNotFoundException {
+        return vetRepository.findById(id).get();
     }
 }

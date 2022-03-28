@@ -1,6 +1,7 @@
 package com.javaegitimleri.petclinic;
 
 import com.javaegitimleri.petclinic.entity.Owner;
+import com.javaegitimleri.petclinic.entity.Vet;
 import com.javaegitimleri.petclinic.service.petclinic.PetClinicService;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -23,6 +24,12 @@ public class PetClinicIntegrationTests {
     public void testFindOwners() {
         List<Owner> owners = petClinicService.findOwners();
         MatcherAssert.assertThat(owners.size(), Matchers.equalTo(10));
+    }
+
+    @Test
+    public void testFindVets() {
+        List<Vet> vets = petClinicService.findVets();
+        MatcherAssert.assertThat(vets.size(), Matchers.equalTo(3));
     }
 
 }
