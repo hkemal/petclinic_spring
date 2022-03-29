@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.ConstraintViolationException;
 import java.net.URI;
 import java.util.List;
 
@@ -59,6 +60,8 @@ public class PetClinicRestResource {
             Long id = owner.getId();
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
             return ResponseEntity.created(location).build();
+        } catch (ConstraintViolationException e) {
+            return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
